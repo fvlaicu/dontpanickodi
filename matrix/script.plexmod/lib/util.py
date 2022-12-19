@@ -175,15 +175,15 @@ def _processSettingForWrite(value):
 
 
 def setGlobalProperty(key, val):
-    xbmcgui.Window(10000).setProperty('script.plex.{0}'.format(key), val)
+    xbmcgui.Window(10000).setProperty('script.plexmod.{0}'.format(key), val)
 
 
 def setGlobalBoolProperty(key, boolean):
-    xbmcgui.Window(10000).setProperty('script.plex.{0}'.format(key), boolean and '1' or '')
+    xbmcgui.Window(10000).setProperty('script.plexmod.{0}'.format(key), boolean and '1' or '')
 
 
 def getGlobalProperty(key):
-    return xbmc.getInfoLabel('Window(10000).Property(script.plex.{0})'.format(key))
+    return xbmc.getInfoLabel('Window(10000).Property(script.plexmod.{0})'.format(key))
 
 
 def showNotification(message, time_ms=3000, icon_path=None, header=ADDON.getAddonInfo('name')):
