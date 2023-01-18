@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="script.plexmod"
        name="Plex"
-       version="0.3.4+pfe4fc6b+"
+       version="0.3.6+kodi20-18012023"
        provider-name="Plex">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
-        <import addon="script.module.requests" version="2.22.0+matrix.1"/>
-        <import addon="script.module.six" version="1.14.0+matrix.1"/>
+        <import addon="script.module.requests" version="2.27.1+matrix.1"/>
+        <import addon="script.module.six" version="1.15.0+matrix.1"/>
         <import addon="script.module.kodi-six" version="0.1.3.1" />
     </requires>
     <extension point="xbmc.python.script" library="default.py">
@@ -36,14 +36,12 @@
         <source>https://github.com/plexinc/plex-for-kodi</source>
         <platform>all</platform>
         <news>
-Plex Mod: pannal: Rev: fe4fc6b
-
-Added Skip Intro (thanks to pannal)
-Use device name for friendly name
-Fix some hubs not displaying
-Added title scrolling when focused on some items
-Show playback speed on OSD
-Fix possible error on playlists window
+Add Simplified Chinese translations (thanks to lsl330)
+Replace progressive jpg files (thanks to shyzus)
+Fix deprecated calls to thread.isAlive() with thread.is_alive() (thanks to mliudev)
+Work around github.com/python/cpython/issues/71587 (thanks to garymm)
+Fix error preventing music playback (thanks to markojaadam)
+Settings: Fix error when displaying About
         </news>
         <assets>
             <icon>icon.png</icon>

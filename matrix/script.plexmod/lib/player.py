@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 import base64
 import threading
-import six
 
 from kodi_six import xbmc
 from kodi_six import xbmcgui
@@ -14,7 +13,7 @@ from plexnet import plexplayer
 from plexnet import plexapp
 from plexnet import signalsmixin
 from plexnet import util as plexnetUtil
-
+import six
 from six.moves import range
 
 FIVE_MINUTES_MILLIS = 300000
