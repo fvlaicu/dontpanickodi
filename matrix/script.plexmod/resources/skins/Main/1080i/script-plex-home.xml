@@ -26,7 +26,7 @@
         </control>
 
         <control type="grouplist" id="50">
-            <animation effect="slide" end="0,-135" time="200" tween="sine" easing="inout" condition="!String.IsEmpty(Window(10000).Property(script.plexmod.off.sections))">Conditional</animation>
+            <animation effect="slide" end="0,-135" time="200" tween="sine" easing="inout" condition="!String.IsEmpty(Window(10000).Property(script.plex.off.sections))">Conditional</animation>
 
             <!-- 501 Focus animation -->
             <animation type="Conditional" condition="Integer.IsGreater(Window.Property(hub.focus),0) + Control.IsVisible(500)" reversible="true">
@@ -7769,7 +7769,7 @@
 
 
         <control type="group" id="200">
-            <animation effect="slide" end="0,-135" time="200" tween="sine" easing="inout" condition="!String.IsEmpty(Window(10000).Property(script.plexmod.off.sections)) + !ControlGroup(200).HasFocus(0)">Conditional</animation>
+            <animation effect="slide" end="0,-135" time="200" tween="sine" easing="inout" condition="!String.IsEmpty(Window(10000).Property(script.plex.off.sections)) + !ControlGroup(200).HasFocus(0)">Conditional</animation>
             <defaultcontrol always="true">201</defaultcontrol>
             <posx>0</posx>
             <posy>0</posy>
@@ -7777,7 +7777,7 @@
             <height>135</height>
             <control type="image">
                 <animation effect="fade" start="0" end="100" time="200" tween="quadratic" easing="out" reversible="true">VisibleChange</animation>
-                <visible>ControlGroup(200).HasFocus(0) + !String.IsEmpty(Window(10000).Property(script.plexmod.off.sections))</visible>
+                <visible>ControlGroup(200).HasFocus(0) + !String.IsEmpty(Window(10000).Property(script.plex.off.sections))</visible>
                 <posx>0</posx>
                 <posy>0</posy>
                 <width>1920</width>
@@ -7810,15 +7810,15 @@
                     <align>left</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <label>[UPPERCASE]$ADDON[script.plex 32430][/UPPERCASE]</label>
+                    <label>[UPPERCASE]$ADDON[script.plexmod32430][/UPPERCASE]</label>
                 </control>
             </control>
             <control type="group">
-                <visible>Player.HasAudio + String.IsEmpty(Window(10000).Property(script.plexmod.theme_playing))</visible>
+                <visible>Player.HasAudio + String.IsEmpty(Window(10000).Property(script.plex.theme_playing))</visible>
                 <posx>438</posx>
                 <posy>0</posy>
                 <control type="button" id="204">
-                    <visible>Player.HasAudio + String.IsEmpty(Window(10000).Property(script.plexmod.theme_playing))</visible>
+                    <visible>Player.HasAudio + String.IsEmpty(Window(10000).Property(script.plex.theme_playing))</visible>
                     <posx>-10</posx>
                     <posy>38</posy>
                     <width>260</width>
@@ -8476,7 +8476,7 @@
                 <font>font30</font>
                 <align>center</align>
                 <textcolor>FFFFFFFF</textcolor>
-                <label>[B]$ADDON[script.plex 32452][/B]</label>
+                <label>[B]$ADDON[script.plexmod32452][/B]</label>
             </control>
             <control type="label">
                 <scroll>false</scroll>
@@ -8487,7 +8487,7 @@
                 <font>font30</font>
                 <align>center</align>
                 <textcolor>FFCCCCCC</textcolor>
-                <label>$ADDON[script.plex 32453]</label>
+                <label>$ADDON[script.plexmod32453]</label>
             </control>
         </control>
 

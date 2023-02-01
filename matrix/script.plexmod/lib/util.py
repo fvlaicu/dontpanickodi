@@ -99,9 +99,9 @@ class AdvancedSettings(object):
         ("dynamic_timeline_seek", False),
         ("forced_subtitles_override", False),
         ("fast_back", False),
-        ("dynamic_backgrounds", False),
-        ("background_art_blur_amount", 128),
-        ("background_art_opacity_amount", 60),
+        ("dynamic_backgrounds", True),
+        ("background_art_blur_amount", 0),
+        ("background_art_opacity_amount", 40),
         ("screensaver_quiz", False),
         ("intro_skip_early", False),
         ("postplay_always", False),
@@ -175,15 +175,15 @@ def _processSettingForWrite(value):
 
 
 def setGlobalProperty(key, val):
-    xbmcgui.Window(10000).setProperty('script.plexmod.{0}'.format(key), val)
+    xbmcgui.Window(10000).setProperty('script.plex.{0}'.format(key), val)
 
 
 def setGlobalBoolProperty(key, boolean):
-    xbmcgui.Window(10000).setProperty('script.plexmod.{0}'.format(key), boolean and '1' or '')
+    xbmcgui.Window(10000).setProperty('script.plex.{0}'.format(key), boolean and '1' or '')
 
 
 def getGlobalProperty(key):
-    return xbmc.getInfoLabel('Window(10000).Property(script.plexmod.{0})'.format(key))
+    return xbmc.getInfoLabel('Window(10000).Property(script.plex.{0})'.format(key))
 
 
 def showNotification(message, time_ms=3000, icon_path=None, header=ADDON.getAddonInfo('name')):

@@ -138,11 +138,12 @@ class PlatformSetting(InfoSetting):
 
     def valueLabel(self):
         try:
-            import platform
-            dist = platform. dist()
+            from lib import distro
+            dist = distro.linux_distribution()
             if dist and len(dist) > 1:
                 plat = u'{0} {1}'.format(dist[0], dist[1])
             else:
+                import platform
                 plat = platform.platform()
                 plat = u'{0} {1}'.format(plat[0], '.'.join(plat[1].split('.', 2)[:2]))
         except:
@@ -200,7 +201,7 @@ class Settings(object):
                         "If enabled, when playback ends and there is a 'Next Up' item available, it will be automatically be played after a 15 second delay."
                     )
                 ),
-                ThemeMusicSetting('theme_music', T(32480, 'Theme music'), 11),
+                ThemeMusicSetting('theme_music', T(32480, 'Theme music'), 5),
             )
         ),
         'audio': (

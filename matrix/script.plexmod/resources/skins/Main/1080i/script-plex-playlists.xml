@@ -47,7 +47,7 @@
                     <align>left</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <label>[UPPERCASE]$ADDON[script.plex 32048][/UPPERCASE]</label>
+                    <label>[UPPERCASE]$ADDON[script.plexmod32048][/UPPERCASE]</label>
                 </control>
                 <control type="list" id="101">
                     <posx>0</posx>
@@ -205,7 +205,7 @@
                     <align>left</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <label>[UPPERCASE]$ADDON[script.plex 32053][/UPPERCASE]</label>
+                    <label>[UPPERCASE]$ADDON[script.plexmod32053][/UPPERCASE]</label>
                 </control>
                 <control type="list" id="301">
                     <posx>-21.5</posx>
@@ -387,7 +387,7 @@
                     <align>left</align>
                     <aligny>center</aligny>
                     <textcolor>FFFFFFFF</textcolor>
-                    <label>[UPPERCASE]$ADDON[script.plex 32333][/UPPERCASE]</label>
+                    <label>[UPPERCASE]$ADDON[script.plexmod32333][/UPPERCASE]</label>
                 </control>
                 <control type="group">
                     <width>40</width>
@@ -409,11 +409,11 @@
                 </control>
             </control>
             <control type="group">
-                <visible>Player.HasAudio + String.IsEmpty(Window(10000).Property(script.plexmod.theme_playing))</visible>
+                <visible>Player.HasAudio + String.IsEmpty(Window(10000).Property(script.plex.theme_playing))</visible>
                 <posx>438</posx>
                 <posy>0</posy>
                 <control type="button" id="204">
-                    <visible>Player.HasAudio + String.IsEmpty(Window(10000).Property(script.plexmod.theme_playing))</visible>
+                    <visible>Player.HasAudio + String.IsEmpty(Window(10000).Property(script.plex.theme_playing))</visible>
                     <posx>-10</posx>
                     <posy>38</posy>
                     <width>260</width>

@@ -22,8 +22,8 @@
 
 <addon id="script.plexmod"
        name="Plex"
-       version="0.3.6+7a02bfc+kodi20"
-       provider-name="Plex">
+       version="0.4.1-2d9d7ae"
+       provider-name="pannal">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests" version="2.27.1+matrix.1"/>
@@ -57,12 +57,11 @@
         <source>https://github.com/plexinc/plex-for-kodi</source>
         <platform>all</platform>
         <news>
-Add Simplified Chinese translations (thanks to lsl330)
-Replace progressive jpg files (thanks to shyzus)
-Fix deprecated calls to thread.isAlive() with thread.is_alive() (thanks to mliudev)
-Work around github.com/python/cpython/issues/71587 (thanks to garymm)
-Fix error preventing music playback (thanks to markojaadam)
-Settings: Fix error when displaying About
+Initial PlexMod for Kodi release, based on my plex-for-kodi fork's develop branch
+Add support for Kodi Nexus (20) on LibreELEC and Android
+Add AV1 toggle and AV1 direct play support
+Rename addon to "script.plexmod"
+Add all non-plex-conform features of the develop branch as default features
         </news>
         <assets>
             <icon>icon.png</icon>

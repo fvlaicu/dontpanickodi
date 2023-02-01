@@ -1,6 +1,5 @@
 from __future__ import absolute_import
 from datetime import datetime
-import time
 
 from . import exceptions
 from . import util
@@ -59,9 +58,7 @@ class PlexValue(six.text_type):
         if self.isdigit():
             dt = datetime.fromtimestamp(int(self))
         else:
-            # Avoid datetime.strptime to avoid
-            # https://github.com/python/cpython/issues/71587
-            dt = datetime.fromtimestamp(time.mktime(time.strptime(self, '%Y-%m-%d')))
+            dt = datetime.strptime(self, '%Y-%m-%d')
 
         if not format_:
             return dt

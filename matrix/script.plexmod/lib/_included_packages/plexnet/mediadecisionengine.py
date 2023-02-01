@@ -152,7 +152,7 @@ class MediaDecisionEngine(object):
                 if stream.codec == "h264" or (
                     stream.codec == "hevc" and item.settings.getPreference("allow_hevc", False)
                 ) or (
-                    stream.codec == "hevc" and item.settings.getPreference("allow_av1", False)
+                    stream.codec == "av1" and item.settings.getPreference("allow_av1", False)
                 ) or (
                     stream.codec == "vp9" and item.settings.getGlobal("vp9Support")
                 ):

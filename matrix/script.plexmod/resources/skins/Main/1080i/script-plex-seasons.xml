@@ -1026,7 +1026,7 @@
                         <align>left</align>
                         <aligny>center</aligny>
                         <textcolor>FFFFFFFF</textcolor>
-                        <label>[UPPERCASE]$ADDON[script.plex 32419][/UPPERCASE]</label>
+                        <label>[UPPERCASE]$ADDON[script.plexmod32419][/UPPERCASE]</label>
                     </control>
                     <control type="list" id="403">
                         <posx>0</posx>
@@ -1201,11 +1201,11 @@
                 </control>
             </control>
             <control type="group">
-                <visible>Player.HasAudio + String.IsEmpty(Window(10000).Property(script.plexmod.theme_playing))</visible>
+                <visible>Player.HasAudio + String.IsEmpty(Window(10000).Property(script.plex.theme_playing))</visible>
                 <posx>438</posx>
                 <posy>0</posy>
                 <control type="button" id="204">
-                    <visible>Player.HasAudio + String.IsEmpty(Window(10000).Property(script.plexmod.theme_playing))</visible>
+                    <visible>Player.HasAudio + String.IsEmpty(Window(10000).Property(script.plex.theme_playing))</visible>
                     <posx>-10</posx>
                     <posy>38</posy>
                     <width>260</width>
