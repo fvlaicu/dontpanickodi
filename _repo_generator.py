@@ -9,9 +9,10 @@ import os
 import shutil
 import hashlib
 import zipfile
+import sys
 from xml.etree import ElementTree
 
-KODI_VERSIONS = ["krypton", "leia", "matrix", "nexus", "repo"]
+KODI_VERSIONS = ["krypton", "leia", "matrix", "nexus", "omega", "repo"]
 IGNORE = [
     ".git",
     ".github",
@@ -22,6 +23,9 @@ IGNORE = [
     "venv",
 ]
 
+ADDON_RE = re.compile(r'(<addon id="(?!repository)(?P<id>.+?)".*?version="(?P<version>.+?)".*?</addon>)',
+                      re.DOTALL | re.MULTILINE)
+
 
 class Generator:
     """
@@ -30,16 +34,17 @@ class Generator:
     the checked-out repo.
     """
 
-    def __init__(self, release):
+    def __init__(self, release, onlyMD5=False):
         self.release_path = release
         self.zips_path = os.path.join(self.release_path, "zips")
 
         if not os.path.exists(self.zips_path):
             os.makedirs(self.zips_path)
 
-        self._remove_binaries()
+        if not onlyMD5:
+            self._remove_binaries()
 
-        self._generate_addons_file()
+            self._generate_addons_file(release)
         self._generate_md5_file()
 
     def _remove_binaries(self):
@@ -139,7 +144,15 @@ class Generator:
 
             shutil.copy(addon_path, zips_path)
 
-    def _generate_addons_file(self):
+    def _get_existing_versions(self):
+        try:
+            addons_xml = os.path.join(self.zips_path, "addons.xml")
+            f = open(addons_xml, encoding="utf-8").read()
+            return ADDON_RE.findall(f)
+        except IOError:
+            return {}
+
+    def _generate_addons_file(self, release_name):
         """
         Generates a zip for each found addon, and updates the addons.xml file accordingly.
         """
@@ -154,11 +167,15 @@ class Generator:
             and os.path.exists(os.path.join(self.release_path, i, "addon.xml"))
         ]
 
+        existing_addons = self._get_existing_versions()
+        versions_seen = {}
+
         for addon in folders:
             try:
                 _path = os.path.join(self.release_path, addon, "addon.xml")
                 xml_lines = open(_path, "r", encoding="utf-8").read().splitlines()
                 addon_xml = ""
+                version = None
 
                 # loop thru cleaning each line
                 ver_found = False
@@ -171,20 +188,32 @@ class Generator:
                     addon_xml += line.rstrip() + "\n"
                 addons_xml += addon_xml.rstrip() + "\n\n"
 
+                if version:
+                    versions_seen[addon] = version
+
                 # Create the zip files
                 self._create_zip(addon, version)
                 self._copy_meta_files(addon, os.path.join(self.zips_path, addon))
             except Exception as e:
-                print("Excluding {0}: {1}".format(_path, e))
+                print("Excluding {0}/{1}: {2}".format(release_name, _path, e))
 
         # clean and add closing tag
-        addons_xml = addons_xml.strip() + "\n</addons>\n"
+        addons_xml = addons_xml.strip()
+
+        # add old addons
+        for addon_xml, addon_id, version in existing_addons:
+            if addon_id in versions_seen and version != versions_seen[addon_id] \
+                    and os.path.exists(os.path.join(self.zips_path, addon_id, "{0}-{1}.zip".format(addon_id, version))):
+                print("Adding known addon: {}/{}:{}".format(release_name, addon_id, version))
+                addons_xml += "\n\n" + addon_xml.rstrip()
+
+        addons_xml += "\n</addons>\n"
         self._save_file(
             addons_xml.encode("utf-8"),
             file=os.path.join(self.zips_path, "addons.xml"),
             decode=True,
         )
-        print("Successfully updated addons.xml")
+        print("Successfully updated {}/addons.xml".format(release_name))
 
     def _generate_md5_file(self):
         """
@@ -215,5 +244,6 @@ class Generator:
 
 
 if __name__ == "__main__":
+    onlyMD5 = len(sys.argv) > 1 and sys.argv[1] == "md5"
     for release in [r for r in KODI_VERSIONS if os.path.exists(r)]:
-        Generator(release)
+        Generator(release, onlyMD5=onlyMD5)
